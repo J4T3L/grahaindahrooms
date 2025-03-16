@@ -1,0 +1,122 @@
+/* Styling Global */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    right: -250px; /* Geser ke luar layar kanan */
+    width: 250px;
+    height: 100%;
+    background: #343a40;
+    transition: right 0.3s ease-in-out;
+    padding: 10px;
+    color: white;
+    overflow-y: auto;
+}
+
+.sidebar.active {
+    right: 0;
+}
+
+/* Logo */
+.logo_content {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo img {
+    border-radius: 50%;
+}
+
+.logo_name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* Search Box */
+.src {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: #495057;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.src input {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    background: transparent;
+    color: white;
+    outline: none;
+}
+
+/* Sidebar Menu */
+.nav {
+    list-style: none;
+    padding: 0;
+}
+
+.nav li {
+    padding: 10px;
+}
+
+.nav a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.nav a:hover {
+    background: #007bff;
+}
+
+.nav i {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.tooltip {
+    display: none;
+}
+
+/* Tombol Toggle (Sebelah Kanan) */
+.toggle-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 1000;
+    border-radius: 5px;
+}
+
+.toggle-btn:hover {
+    background: #0056b3;
+}
+
+/* Responsif */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        right: -250px;
+    }
+    .sidebar.active {
+        right: 0;
+    }
+}
