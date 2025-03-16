@@ -1,9 +1,7 @@
 {
     "build": {
-        "env": {
-      "DOCUMENT_ROOT": "/var/www/html/public"
-    }
       "dockerfile": "Dockerfile"
+            
     }
   }
   
