@@ -26,12 +26,15 @@ RUN a2enmod rewrite
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache \
     && chown -R www-data:www-data /var/www/html
 
-# Import database saat container pertama kali berjalan
-COPY ./public/indonesia.sql /tmp/dbkp2.sql 
-RUN ["bash", "-c", "mysql -h $DB_HOST -u$DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < /tmp/database.sql || echo 'Database import skipped'"]
+# Copy skrip entrypoint
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# Copy file SQL ke dalam container
+COPY ./public/database.sql /tmp/database.sql 
 
 # Expose port 80
 EXPOSE 80
 
-# Jalankan Apache
-CMD ["apache2-foreground"]
+# Gunakan skrip entrypoint
+ENTRYPOINT ["/entrypoint.sh"]
