@@ -4,11 +4,16 @@ FROM php:8.2-apache
 # Install ekstensi PHP yang dibutuhkan
 RUN docker-php-ext-install pdo pdo_mysql
 
-# Copy semua file proyek ke dalam container
-COPY . /var/www/html
-
 # Set working directory ke Laravel
 WORKDIR /var/www/html
+
+# Copy semua file proyek ke dalam container
+COPY . .
+
+# Install Composer dan dependensi Laravel
+RUN apt-get update && apt-get install -y unzip curl \
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+    && composer install --no-dev --optimize-autoloader
 
 # Pastikan Apache menggunakan `public/`
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \
