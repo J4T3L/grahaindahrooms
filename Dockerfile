@@ -11,7 +11,7 @@ WORKDIR /var/www/html
 COPY . .
 
 # Install Composer dan dependensi Laravel
-RUN apt-get update && apt-get install -y unzip curl \
+RUN apt-get update && apt-get install -y unzip curl mariadb-client \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && composer install --no-dev --optimize-autoloader
 
@@ -25,6 +25,10 @@ RUN a2enmod rewrite
 # Berikan permission agar Laravel bisa berjalan
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache \
     && chown -R www-data:www-data /var/www/html
+
+# Import database saat container pertama kali berjalan
+COPY ./public/indonesia.sql /tmp/dbkp2.sql 
+RUN ["bash", "-c", "mysql -h $DB_HOST -u$DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < /tmp/database.sql || echo 'Database import skipped'"]
 
 # Expose port 80
 EXPOSE 80
