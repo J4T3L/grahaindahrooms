@@ -1,14 +1,7 @@
 {
   "version": 2,
-  "builds": [],
   "routes": [
     { "src": "/(.*)", "dest": "/public/index.php" }
   ],
-  "env": {
-    "APP_NAME": "Laravel",
-    "APP_ENV": "production",
-    "APP_KEY": "base64:2UbhYB6sDICARU4iNZEqNcetIRXMmC5q6Bh4G1vAg08=",
-    "APP_DEBUG": "false",
-    "APP_URL": "https://your-vercel-app.vercel.app"
-  }
+  "ignoreCommand": "npm run build"
 }
